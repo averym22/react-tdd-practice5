@@ -108,3 +108,23 @@ test('recipe name from recipe in state appears in unordered list', () => {
   expect(wrapper.find('li')).toHaveLength(1);
   expect(wrapper.find('li').text()).toEqual(recipeName);
 })
+
+test('recipes name from recipe in state appears in unordered list', () => {
+  const wrapper = shallow(<App />);
+
+  const recipeName = 'Korean Beef Tacos';
+  const recipeInstructions = 'Kimchi + beef + taco shells';
+
+  const recipeName2 = 'Korean Tacos';
+  const recipeInstructions2 = 'Kimchi + beef';
+
+  const submittedRecipe = [{ name: recipeName, instructions: recipeInstructions },
+  {name: recipeName2, instructions: recipeInstructions2}]
+
+  wrapper.setState({
+    recipes: submittedRecipe,
+  })
+
+  expect(wrapper.find('li')).toHaveLength(2);
+  //expect(wrapper.find('li').text()).toEqual(recipeName);
+})

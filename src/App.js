@@ -31,12 +31,17 @@ class App extends Component {
     e.preventDefault();
 
     this.setState({
-      recipes: [
+      recipes: [...this.state.recipes, 
         {
           name: this.state.newRecipeName,
           instructions: this.state.newRecipeInstructions,
         }
       ]
+    })
+
+    this.setState({
+      name: "",
+      instructions: ""
     })
   }
 
@@ -65,7 +70,9 @@ class App extends Component {
           this.state.recipes !== undefined &&
             this.state.recipes.length > 0
             ? <ul>
-              <li>{this.state.recipes[0].name}</li>
+              {this.state.recipes.map((recipe) => {
+                return <li>{recipe.name}</li>
+              })}
             </ul>
             : <p>There are no recipes to list.</p>
         }
